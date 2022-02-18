@@ -1,0 +1,18 @@
+.place__button-like {
+  padding: 0;
+  width: 22px;
+  height: 19px;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  background-image: url(../../../images/Like_Button.svg);
+  align-self: center;
+  border: none;
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+
+.place__button-like:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}

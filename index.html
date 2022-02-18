@@ -11,58 +11,74 @@
 <body class="page">
   <!-- блок HEADER -->
   <header class="header">
-    <img src="./images/logo.svg" alt="логотип">
-    <img src="./images/Line.svg" alt="линия">
+    <img class="header__logo" src="./images/logo.svg" alt="логотип">
+    <img class="header__line" src="./images/Line.svg" alt="линия">
   </header>
 
 <!-- блок MAIN -->
   <main class="content">
 <!-- блок PROFILE -->
     <section class="profile">
-      <img src="./images/avatar.jpg" alt="аватар">
-      <h1>Жак-Ив Кусто</h1>
-      <p>Исследователь океана</p>
-      <button> <img src="./images/Edit_Button.svg" alt="кнопка редактирования"></button>
-      <button> <img src="./images/Add_Button.png" alt="кнопка добавления"></button>
+      <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+
+      <div class="profile__name">
+        <h1 class="profile__title">Жак-Ив Кусто</h1>
+        <button type="button" class="profile__edit-button"></button>
+      </div>
+      <p class="profile__subtitle">Исследователь океана</p>
+
+      <button type="button" class="profile__add-button"> </button>
 
     </section>
 
 <!-- блок PLACES -->
     <section class="places">
       <div class="place">
-        <img src="./images/karachaevo-cherkessia.jpg" alt="">
-        <p>Карачаевск</p>
-        <img src="./images/like.png" alt="сердечко">
+        <img class="place__image" src="./images/karachaevo-cherkessia.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Карачаево-Черкессия</p>
+          <button class="place__button-like" type="button"></button>
+        </div>
       </div>
 
       <div class="place">
-        <img src="./images/elbrus.jpg" alt="">
-        <p>Эльбрус</p>
-        <img src="./images/like.png" alt="сердечко">
+        <img class="place__image" src="./images/elbrus.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Эльбрус</p>
+          <button class="place__button-like" type="button"></button>
+        </div>
       </div>
 
       <div class="place">
-        <img src="./images/dombai.jpg" alt="">
-        <p>Домбай</p>
-        <img src="./images/like.png" alt="сердечко">
+        <img class="place__image" src="./images/dombai.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Домбай</p>
+          <button class="place__button-like" type="button"></button>
+        </div>
       </div>
 
       <div class="place">
-        <img src="./images/karachaevo-cherkessia.jpg" alt="">
-        <p>Карачаевск</p>
-        <img src="./images/like.png" alt="сердечко">
-       </div>
-
-      <div class="place">
-        <img src="./images/elbrus.jpg" alt="">
-        <p>Эльбрус</p>
-        <img src="./images/like.png" alt="сердечко">
+        <img class="place__image" src="./images/karachaevo-cherkessia.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Карачаево-Черкессия</p>
+          <button class="place__button-like" type="button"></button>
+        </div>
       </div>
 
       <div class="place">
-        <img src="./images/dombai.jpg" alt="">
-        <p>Домбай</p>
-        <img src="./images/like.png" alt="сердечко">
+        <img class="place__image" src="./images/elbrus.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Эльбрус</p>
+          <button class="place__button-like" type="button"></button>
+        </div>  >
+      </div>
+
+      <div class="place">
+        <img class="place__image" src="./images/dombai.jpg" alt="">
+        <div class="place__description">
+          <p class="place__text">Домбай</p>
+          <button class="place__button-like" type="button"></button>
+        </div>
       </div>
     </section>
   </main>

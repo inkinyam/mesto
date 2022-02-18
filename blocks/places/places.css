@@ -1,0 +1,11 @@
+.places {
+  margin: 0 auto;
+  max-width: 880px;
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 20px;
+  column-gap: 17px;
+  padding-top: 50px;
+
+}

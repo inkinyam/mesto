@@ -1,0 +1,11 @@
+.profile {
+  margin: 0 auto;
+  max-width: 880px;
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  grid-template-rows: max-content max-content;
+  grid-template-areas:
+  'avatar name button'
+  'avatar subname button';
+
+}
