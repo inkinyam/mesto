@@ -1,0 +1,8 @@
+.popup__button {
+  padding: 0;
+  border: none;
+}
+
+.popup__button:hover {
+  cursor: pointer;
+}

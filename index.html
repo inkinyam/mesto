@@ -16,19 +16,18 @@
 
 <!-- блок MAIN -->
   <main class="content">
+
 <!-- блок PROFILE -->
     <section class="profile">
       <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
-
       <div class="profile__name">
         <h1 class="profile__title">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button"></button>
       </div>
       <p class="profile__subtitle">Исследователь океана</p>
-
       <button type="button" class="profile__add-button"> </button>
-
     </section>
+
 
 <!-- блок PLACES -->
     <section class="places">
@@ -88,3 +87,18 @@
   </footer>
 </body>
 </html>
+
+
+<!-- блок EDIT-FORM -->
+<section class="popup popup_opened">
+  <div class="popup__container">
+    <button class="popup__button popup__button_type_exit" type="button"></button>
+    <div class="popup__wrapper">
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input type="text" class="popup__item popup__item_el_title" placeholder="Жак-Ив Кусто">
+      <input type="text" class="popup__item popup__item_el_subtitle" placeholder="Исследователь океана">
+      <input type="button" class="popup__button popup__button_type_save" value="Сохранить">
+    </div>
+
+  </div>
+</section>
