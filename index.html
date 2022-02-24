@@ -87,19 +87,17 @@
   </footer>
 
 <!-- блок POPUP -->
-<section class="popup">
-  <div class="popup__container">
-    <button class="popup__button popup__button_type_exit" type="button"></button>
-    <form class="popup__wrapper">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__item popup__item_el_title" value="">
-      <input type="text" class="popup__item popup__item_el_subtitle" value="">
-      <input type="submit" class="popup__button popup__button_type_save" value="Сохранить">
-    </form>
-  </div>
-</section>
+  <section class="popup">
+      <form class="popup__wrapper" name="editForm">
+        <button class="popup__button popup__button_type_exit" type="button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" class="popup__item popup__item_el_title" value="" name="popup_title" placeholder="Введите имя">
+        <input type="text" class="popup__item popup__item_el_subtitle" value="" name="popup_sutitle" placeholder="Введите должность">
+        <button type="submit" class="popup__button popup__button_type_save">Сохранить</button>
+      </form>
+  </section>
 
-<script src="script.js"></script>
+  <script src="./scripts/script.js"></script>
 </body>
 </html>
 

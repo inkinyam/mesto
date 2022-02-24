@@ -12,6 +12,11 @@
   color: #000;
 }
 
+.popup__item:last-of-type {
+  margin: 0 auto;
+}
+
+
 .popup__item:focus {
   outline: 3px solid rgba(145, 151, 153, 0.3);
 }

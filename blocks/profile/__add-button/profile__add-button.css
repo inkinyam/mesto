@@ -5,7 +5,7 @@
   height: 50px;
   background-color: transparent;
   background-repeat: no-repeat;
-  background-image: url(../../../images/Add_Button.png);
+  background-image: url(../../../images/Add_Button.svg);
   background-position: center;
   align-self: center;
   grid-area: button;

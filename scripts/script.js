@@ -4,6 +4,10 @@ let subtitle      = document.querySelector('.profile__subtitle');
 let inputTitle    = document.querySelector('.popup__item_el_title');
 let inputSubtitle = document.querySelector('.popup__item_el_subtitle');
 
+let editButton    = document.querySelector('.profile__edit-button');
+let closeButton   = document.querySelector('.popup__button_type_exit');
+let popupForm     = document.querySelector('.popup__wrapper');
+
 function openPopup(){
   popup.classList.add('popup_opened');
   inputTitle.value = title.textContent;
@@ -18,9 +22,9 @@ function formSubmitHandler (event) {
   event.preventDefault();
   title.textContent = inputTitle.value;
   subtitle.textContent =  inputSubtitle.value;
-  popup.classList.remove('popup_opened');
+  closePopup();
 }
 
-document.querySelector('.profile__edit-button').addEventListener('click', openPopup);
-document.querySelector('.popup__button_type_exit').addEventListener('click', closePopup);
-document.querySelector('.popup__wrapper').addEventListener('submit', formSubmitHandler);
+editButton.addEventListener('click', openPopup);
+closeButton.addEventListener('click', closePopup);
+popupForm.addEventListener('submit', formSubmitHandler);
