@@ -7,4 +7,5 @@
   background-color: rgba(10, 10, 10, 0.5);
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
