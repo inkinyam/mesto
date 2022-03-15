@@ -31,59 +31,7 @@
 
 <!-- блок PLACES -->
     <section class="places" aria-label="Фотографии">
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/firenze.jpg" alt="фото Флоренции">
-        <div class="place__description">
-          <p class="place__text">Флоренция, Италия</p>
-          <button class="place__button-like place__button-like_active" type="button"></button>
-        </div>
-      </div>
 
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/istambul.jpg" alt="фото Стамбула">
-        <div class="place__description">
-          <p class="place__text">Стамбул</p>
-          <button class="place__button-like" type="button"></button>
-        </div>
-      </div>
-
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/finland.jpg" alt="фото северное сияние">
-        <div class="place__description">
-          <p class="place__text">Финляндия</p>
-          <button class="place__button-like" type="button"></button>
-        </div>
-      </div>
-
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/moscow.jpg" alt="фото Москва">
-        <div class="place__description">
-          <p class="place__text">Москва</p>
-          <button class="place__button-like" type="button"></button>
-        </div>
-      </div>
-
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/stockholm.jpg" alt="фото Стокгольм">
-        <div class="place__description">
-          <p class="place__text">Стокгольм</p>
-          <button class="place__button-like" type="button"></button>
-        </div>
-      </div>
-
-      <div class="place">
-        <button class="place__button-delete" type="button"></button>
-        <img class="place__image" src="./images/turri.jpg" alt="фото Турри">
-        <div class="place__description">
-          <p class="place__text">Турри, Италия</p>
-          <button class="place__button-like" type="button"></button>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -92,42 +40,31 @@
     <p class="footer__copiryght">© 2022. i_n_k_i</p>
   </footer>
 
-<!-- блок POPUP -->
-  <!--
-    <form action="#" class="popup popup_edit"  name="editForm">
-    <button class="popup__button popup__button_type_exit popup_edit__exit" type="button"></button>
-    <fieldset class="popup__wrapper">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input type="text" class="popup__item popup__item_el_title" value="" name="popup_title" placeholder="Введите имя">
-      <input type="text" class="popup__item popup__item_el_subtitle" value="" name="popup_sutitle" placeholder="Введите должность">
-      <button type="submit" class="popup__button popup__button_type_save">Сохранить</button>
-    </fieldset>
-  </form>
--->
 
+<!--блок POPUP-->
   <section class="popup popup-edit">
-      <form class="popup__wrapper" name="editForm">
+      <form class="popup__wrapper popup-edit__wrapper" name="editForm">
         <button class="popup__button popup__button_type_exit popup-edit__exit" type="button"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" class="popup__item popup__item_el_title" value="" name="popup_title" placeholder="Введите имя">
         <input type="text" class="popup__item popup__item_el_subtitle" value="" name="popup_sutitle" placeholder="Введите должность">
-        <button type="submit" class="popup__button popup__button_type_save">Сохранить</button>
+        <button type="submit" class="popup__button popup__button_type_save popup-edit__save">Сохранить</button>
       </form>
   </section>
 
   <!-- блок ADD-POPUP-->
   <section class="popup popup-add">
-    <form class="popup__wrapper" name="addForm">
+    <form class="popup__wrapper popup-add__wrapper" name="addForm">
       <button class="popup__button popup__button_type_exit popup-add__exit" type="button"></button>
       <h2 class="popup__title">Новое место</h2>
-      <input type="text" class="popup__item popup__item_el_title" value="" name="popup_title" placeholder="Название места">
-      <input type="text" class="popup__item popup__item_el_subtitle" value="" name="popup_sutitle" placeholder="Ссылка на картинку">
-      <button type="submit" class="popup__button popup__button_type_save">Сохранить</button>
+      <input type="text" class="popup__item popup__item_el_name" value="" name="popup_title" placeholder="Название места">
+      <input type="text" class="popup__item popup__item_el_link" value="" name="popup_sutitle" placeholder="Ссылка на картинку">
+      <button type="submit" class="popup__button popup__button_type_save popup-add__save">Сохранить</button>
     </form>
   </section>
 
   <!-- блок PHOTO-POPUP-->
-  <section class="popup popup-photo popup_opened">
+  <section class="popup popup-photo">
     <div class="popup__figure">
       <button class="popup__button popup__button_type_exit popup-photo__exit" type="button"></button>
       <img class="popup__image" src="./images/turri.jpg" alt="Италия, Турри">
@@ -135,6 +72,17 @@
     </div>
   </section>
 
+  <!-- описание темплейта карточки-->
+  <template id="card">
+    <div class="place">
+      <button class="place__button-delete" type="button"></button>
+      <img class="place__image" src="#" alt="">
+      <div class="place__description">
+        <p class="place__text"> </p>
+        <button class="place__button-like" type="button"></button>
+      </div>
+    </div>
+  </template>
 
   <script src="./scripts/script.js"></script>
 </body>
