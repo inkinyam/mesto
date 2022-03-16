@@ -63,13 +63,9 @@
     </form>
   </section>
 
-  <!-- блок PHOTO-POPUP-->
+ <!-- блок PHOTO-POPUP-->
   <section class="popup popup-photo">
-    <div class="popup__figure">
-      <button class="popup__button popup__button_type_exit popup-photo__exit" type="button"></button>
-      <img class="popup__image" src="./images/turri.jpg" alt="Италия, Турри">
-      <p class="popup__caption">Турри, Италия</p>
-    </div>
+
   </section>
 
   <!-- описание темплейта карточки-->
@@ -82,6 +78,15 @@
         <button class="place__button-like" type="button"></button>
       </div>
     </div>
+  </template>
+
+  <!-- описание темплейта попапа с фото-->
+  <template id="popup-photo">
+      <div class="popup__figure">
+        <button class="popup__button popup__button_type_exit popup-photo__exit" type="button"></button>
+        <img class="popup__image" src="#" alt="#">
+        <p class="popup__caption"> </p>
+      </div>
   </template>
 
   <script src="./scripts/script.js"></script>
