@@ -30,21 +30,22 @@ const cardName = document.querySelector('.popup__item_el_name');
 const cardLink = document.querySelector('.popup__item_el_link');
 
 
-function openPopup(popup){
+const openPopup = popup => {
   popup.classList.add('popup_opened');
 }
 
-function fillEditPopup() {
+const fillEditPopup = () => {
   inputTitle.value = title.textContent;
   inputSubtitle.value = subtitle.textContent;
 }
 
-function closePopup(popup){
+const closePopup = popup => {
   popup.classList.remove('popup_opened');
 }
 
 // Функция сохранения на форму редактирования профиля
-function editFormSubmitHandler (event) {
+
+const editFormSubmitHandler = event => {
   event.preventDefault();
   title.textContent = inputTitle.value;
   subtitle.textContent =  inputSubtitle.value;
@@ -54,7 +55,7 @@ function editFormSubmitHandler (event) {
 editForm.addEventListener('submit', editFormSubmitHandler);
 
 // Функция сохранения на форму добавления
-function addFormSubmitHandler (event) {
+const addFormSubmitHandler = event => {
   event.preventDefault();
   const newCard = {
                     name: '',
@@ -67,42 +68,41 @@ function addFormSubmitHandler (event) {
   }
   renderCard (newCard);
   closePopup(addPopup);
-  cardName.value='';
-  cardLink.value='';
+  addForm.reset();
 }
 
 addForm.addEventListener('submit', addFormSubmitHandler);
 
 
 //Вызовы функций открытия попапов
-editButton.addEventListener('click', function () {
+editButton.addEventListener('click', () => {
   openPopup(editPopup);
   fillEditPopup();
 });
 
-addButton.addEventListener('click', function () {
+addButton.addEventListener('click', () => {
   openPopup(addPopup);
 });
 
 
 // Вызовы функций закрытия попапов
-editPopupExitButton.addEventListener('click', function () {
+editPopupExitButton.addEventListener('click', () => {
   closePopup(editPopup);
 });
 
-addPopupExitButton.addEventListener('click', function () {
+addPopupExitButton.addEventListener('click', () => {
   closePopup(addPopup);
 });
 
 //Создаем и открываем заполненный попап с фоткой
-function createPopup (link, name) {
+const createPopup = (link, name) => {
   const popupTemplate  = document.querySelector('#popup-photo').content;
   const popupElement   = popupTemplate.querySelector('.popup__figure').cloneNode(true);
 
   popupElement.querySelector('.popup__image').src = link;
   popupElement.querySelector('.popup__image').alt = name;
   popupElement.querySelector('.popup__caption').textContent = name;
-  popupElement.querySelector('.popup-photo__exit').addEventListener ('click', function (evt) {
+  popupElement.querySelector('.popup-photo__exit').addEventListener ('click', (evt) => {
     closePopup(photoPopup);
     evt.target.parentElement.remove();
   });
@@ -112,7 +112,7 @@ function createPopup (link, name) {
 }
 
 //создаем заполненную карточку
-function createCard (data) {
+const createCard = (data) => {
   const cardTemplate     = document.querySelector('#card').content;
   const cardElement      = cardTemplate.querySelector('.place').cloneNode(true);
 
@@ -121,15 +121,15 @@ function createCard (data) {
   cardElement.querySelector('.place__image').alt = data.name;
 
 
-  cardElement.querySelector('.place__button-like').addEventListener('click', function (evt) {
+  cardElement.querySelector('.place__button-like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('place__button-like_active');
   });
 
-  cardElement.querySelector('.place__button-delete').addEventListener('click', function (evt) {
+  cardElement.querySelector('.place__button-delete').addEventListener('click', (evt) => {
     evt.target.closest('.place').remove();
   });
 
-  cardElement.querySelector('.place__image').addEventListener('click', function(evt) {
+  cardElement.querySelector('.place__image').addEventListener('click', (evt) => {
     const elementLink = data.link;
     const elementName = data.name;
     createPopup(elementLink, elementName);
@@ -138,12 +138,12 @@ function createCard (data) {
   return cardElement;
 }
 
-function renderCard (card) {
+const renderCard = (card) => {
   const cardElement = createCard(card);
   places.prepend(cardElement);
 }
 
-function initialRendeCards () {
+const initialRendeCards = () => {
   initialCards.forEach(renderCard);
 }
 
