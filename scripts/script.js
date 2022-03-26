@@ -29,6 +29,9 @@ const places            = document.querySelector('.places');
 const cardName = document.querySelector('.popup__item_el_name');
 const cardLink = document.querySelector('.popup__item_el_link');
 
+// Переменная с массивом попапов
+const popupOverlays      = Array.from(document.querySelectorAll('.popup'));
+
 
 const openPopup = popup => {
   popup.classList.add('popup_opened');
@@ -44,7 +47,6 @@ const closePopup = popup => {
 }
 
 // Функция сохранения на форму редактирования профиля
-
 const editFormSubmitHandler = event => {
   event.preventDefault();
   title.textContent = inputTitle.value;
@@ -58,10 +60,8 @@ editForm.addEventListener('submit', editFormSubmitHandler);
 const addFormSubmitHandler = event => {
   event.preventDefault();
   const newCard = {
-                    name: '',
-                    link: ''}
-  newCard.name = cardName.value;
-  newCard.link = cardLink.value;
+                    name: cardName.value,
+                    link: cardLink.value}
 
   if (places.children.length === 6) {
       places.lastElementChild.remove();
@@ -72,7 +72,6 @@ const addFormSubmitHandler = event => {
 }
 
 addForm.addEventListener('submit', addFormSubmitHandler);
-
 
 //Вызовы функций открытия попапов
 editButton.addEventListener('click', () => {
@@ -93,6 +92,30 @@ editPopupExitButton.addEventListener('click', () => {
 addPopupExitButton.addEventListener('click', () => {
   closePopup(addPopup);
 });
+
+// Закрытие попапов кнопкой esc
+editPopup.addEventListener('keydown', (evt)=> {
+  console.log(evt);
+  if (evt.key === 'Escape'){
+    closePopup(editPopup);
+  }
+});
+
+addPopup.addEventListener('keydown', (evt)=> {
+  if (evt.key === 'Escape'){
+    closePopup(addPopup);
+  }
+});
+
+// Закрытие попапов кликом мыши на оверлей
+popupOverlays.forEach(item => {
+  item.addEventListener('click', evt => {
+    if (evt.target.classList.contains('popup_opened')){
+      closePopup(evt.target);
+    }
+});
+})
+
 
 //Создаем и открываем заполненный попап с фоткой
 const createPopup = (link, name) => {
@@ -119,7 +142,6 @@ const createCard = (data) => {
   cardElement.querySelector('.place__image').src = data.link;
   cardElement.querySelector('.place__text').textContent = data.name;
   cardElement.querySelector('.place__image').alt = data.name;
-
 
   cardElement.querySelector('.place__button-like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('place__button-like_active');
