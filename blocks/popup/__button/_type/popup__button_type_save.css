@@ -4,7 +4,7 @@
   width: 358px;
   min-height: 50px;
   background-color: black;
-  margin: 48px auto 37px;
+  margin: 31px auto 37px;
   color: white;
   font-size: 18px;
   font-style: normal;
@@ -20,7 +20,7 @@
   .popup__button_type_save{
     width: 238px;
     height: 46px;
-    margin: 45px auto 25px;
+    margin: 31px auto 25px;
     font-size: 14px;
     line-height: 17px;
   }
