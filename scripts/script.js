@@ -42,54 +42,61 @@ const photoPopupImage       = document.querySelector('.popup__image');
 const photoPopupCaption     = document.querySelector('.popup__caption');
 
 
-const openPopup = popup => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt)=>{
-    if (evt.key === "Escape") {
-      closePopup(popup);
-      if (popup.classList.contains('popup-add')) {
-        addForm.reset();
-      }
-    }
-  })
+//функция закрытия форм по нажатию на esc
+const closePopupByEsc = evt => {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
 
+//функция открытия попапа
+const openPopup = popup => {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupByEsc);
+}
+
+//функция заполнения EDIT попапа
 const fillEditPopup = () => {
   inputTitle.value = title.textContent;
   inputSubtitle.value = subtitle.textContent;
 }
 
+//функция закрытия попапа
 const closePopup = popup => {
-  document.removeEventListener('keydown',closePopup);
+  document.removeEventListener('keydown', closePopupByEsc);
   popup.classList.remove('popup_opened');
 }
 
 // Функция сохранения на форму редактирования профиля
-const editFormSubmitHandler = event => {
+const handleEditFormSubmit = event => {
   event.preventDefault();
   title.textContent = inputTitle.value;
   subtitle.textContent =  inputSubtitle.value;
   closePopup(editPopup);
 }
 
-editForm.addEventListener('submit', editFormSubmitHandler);
+editForm.addEventListener('submit', handleEditFormSubmit);
+
+//функция отключения кнопки сабмита
+const disableSubmitter = (evt) => {
+  evt.submitter.classList.add('popup__button_type_disabled');
+  evt.submitter.setAttribute('disabled', 'disabled');
+}
 
 // Функция сохранения на форму добавления
-const addFormSubmitHandler = event => {
-  event.preventDefault();
+const handleAddFormSubmit = evt => {
+  evt.preventDefault();
     const newCard = {
                     name: cardName.value,
                     link: cardLink.value}
-
-  if (places.children.length === 6) {
-      places.lastElementChild.remove();
-  }
   renderCard (newCard);
   closePopup(addPopup);
   addForm.reset();
+  disableSubmitter(evt);
 }
 
-addForm.addEventListener('submit', addFormSubmitHandler);
+addForm.addEventListener('submit', handleAddFormSubmit);
 
 //Вызовы функций открытия попапов
 editButton.addEventListener('click', () => {
@@ -102,27 +109,15 @@ addButton.addEventListener('click', () => {
 });
 
 
-// Вызовы функций закрытия попапов
-editPopupExitButton.addEventListener('click', () => {
-  closePopup(editPopup);
-});
-
-addPopupExitButton.addEventListener('click', () => {
-  closePopup(addPopup);
-  addForm.reset();
-});
-
-photoPopupExitButton.addEventListener('click', () =>{
-  closePopup(photoPopup);
-})
-
-// Закрытие попапов кликом мыши на оверлей
+// Функция закрытия попапов (на оверлей или крестик)
 
 popupOverlays.forEach(item => {
-  item.addEventListener('click', evt => {
+  item.addEventListener('mousedown', evt => {
     if (evt.target.classList.contains('popup_opened')){
-      closePopup(evt.target);
-      addForm.reset();
+      closePopup(item);
+    }
+    if (evt.target.classList.contains('popup__button_type_exit')) {
+      closePopup(item);
     }
 });
 })
@@ -141,10 +136,11 @@ const openPhotoPopup = (link, name) => {
 const createCard = (data) => {
   const cardTemplate     = document.querySelector('#card').content;
   const cardElement      = cardTemplate.querySelector('.place').cloneNode(true);
+  const cardImage        = cardElement.querySelector('.place__image');
 
-  cardElement.querySelector('.place__image').src        = data.link;
+  cardImage.src                                         = data.link;
+  cardImage.alt                                         = data.name;
   cardElement.querySelector('.place__text').textContent = data.name;
-  cardElement.querySelector('.place__image').alt        = data.name;
 
   cardElement.querySelector('.place__button-like').addEventListener('click', (evt) => {
     evt.target.classList.toggle('place__button-like_active');
@@ -154,7 +150,7 @@ const createCard = (data) => {
     evt.target.closest('.place').remove();
   });
 
-  cardElement.querySelector('.place__image').addEventListener('click', (evt) => {
+  cardImage.addEventListener('click', (evt) => {
     const elementLink = data.link;
     const elementName = data.name;
     openPhotoPopup(elementLink, elementName);
@@ -168,11 +164,11 @@ const renderCard = (card) => {
   places.prepend(cardElement);
 }
 
-const initialRendeCards = () => {
+const renderInitialCards = () => {
   initialCards.forEach(renderCard);
 }
 
-initialRendeCards();
+renderInitialCards();
 
 
 
