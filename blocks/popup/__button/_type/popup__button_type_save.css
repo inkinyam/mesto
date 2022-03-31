@@ -10,6 +10,7 @@
   font-style: normal;
   line-height: 22px;
   text-align: center;
+  pointer-events: auto;
 }
 
 .popup__button_type_save:hover {

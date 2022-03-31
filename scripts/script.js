@@ -1,23 +1,23 @@
 //Попапы
-const editPopup        = document.querySelector('.popup-edit');
-const addPopup         = document.querySelector('.popup-add');
-const photoPopup       = document.querySelector('.popup-photo')
-const editForm         = document.querySelector('.popup-edit__wrapper');
-const addForm          = document.querySelector('.popup-add__wrapper');
+const editPopup             = document.querySelector('.popup-edit');
+const addPopup              = document.querySelector('.popup-add');
+const photoPopup            = document.querySelector('.popup-photo')
+const editForm              = document.querySelector('.edit-form');
+const addForm               = document.querySelector('.add-form');
 
 //Заполнение попапа editPopup
-const title            = document.querySelector('.profile__title');
-const subtitle         = document.querySelector('.profile__subtitle');
-const inputTitle       = document.querySelector('.popup__item_el_title');
-const inputSubtitle    = document.querySelector('.popup__item_el_subtitle');
+const title                 = document.querySelector('.profile__title');
+const subtitle              = document.querySelector('.profile__subtitle');
+const inputTitle            = document.querySelector('.popup__item_el_title');
+const inputSubtitle         = document.querySelector('.popup__item_el_subtitle');
 
 //Заполнение попапа addPopup
-const inputName        = document.querySelector('.popup__item_el_name');
-const inputLink        = document.querySelector('.popup__item_el_link');
+const inputName             = document.querySelector('.popup__item_el_name');
+const inputLink             = document.querySelector('.popup__item_el_link');
 
 //Кнопки открытия попапов
-const editButton       = document.querySelector('.profile__edit-button');
-const addButton        = document.querySelector('.profile__add-button');
+const editButton            = document.querySelector('.profile__edit-button');
+const addButton             = document.querySelector('.profile__add-button');
 
 // Кпнопки закрытия попапов
 const editPopupExitButton   = document.querySelector('.popup-edit__exit');
@@ -25,21 +25,21 @@ const addPopupExitButton    = document.querySelector('.popup-add__exit');
 const photoPopupExitButton  = document.querySelector('.popup-photo__exit');
 
 // Кнопки сохранения попапов
-const addCardButton    = document.querySelector('.popup-add__save');
+const addCardButton         = document.querySelector('.popup-add__save');
 
 // Контейнер для карточек
-const places            = document.querySelector('.places');
+const places                = document.querySelector('.places');
 
 // Переменные для заполнения карточки из попапа
-const cardName = document.querySelector('.popup__item_el_name');
-const cardLink = document.querySelector('.popup__item_el_link');
+const cardName              = document.querySelector('.popup__item_el_name');
+const cardLink              = document.querySelector('.popup__item_el_link');
 
 // Переменная с массивом попапов
-const popupOverlays      = Array.from(document.querySelectorAll('.popup'));
+const popupOverlays         = Array.from(document.querySelectorAll('.popup'));
 
 // Переменные для открытия увеличенного фото
-const photoPopupImage    = document.querySelector('.popup__image');
-const photoPopupCaption  = document.querySelector('.popup__caption');
+const photoPopupImage       = document.querySelector('.popup__image');
+const photoPopupCaption     = document.querySelector('.popup__caption');
 
 
 const openPopup = popup => {
@@ -47,6 +47,9 @@ const openPopup = popup => {
   document.addEventListener('keydown', (evt)=>{
     if (evt.key === "Escape") {
       closePopup(popup);
+      if (popup.classList.contains('popup-add')) {
+        addForm.reset();
+      }
     }
   })
 }
@@ -96,7 +99,6 @@ editButton.addEventListener('click', () => {
 
 addButton.addEventListener('click', () => {
   openPopup(addPopup);
-  inputName.addEventListener('input', isValid);
 });
 
 
@@ -107,18 +109,20 @@ editPopupExitButton.addEventListener('click', () => {
 
 addPopupExitButton.addEventListener('click', () => {
   closePopup(addPopup);
+  addForm.reset();
 });
 
 photoPopupExitButton.addEventListener('click', () =>{
   closePopup(photoPopup);
 })
 
-
 // Закрытие попапов кликом мыши на оверлей
+
 popupOverlays.forEach(item => {
   item.addEventListener('click', evt => {
     if (evt.target.classList.contains('popup_opened')){
       closePopup(evt.target);
+      addForm.reset();
     }
 });
 })
