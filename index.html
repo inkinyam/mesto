@@ -51,7 +51,7 @@
 
         <input type="text" class="popup__item popup__item_el_subtitle" id="edit-form__subtitle" value="" name="popup_sutitle" placeholder="Введите должность" minlength="2" maxlength="200" required>
         <span class="popup__span-error edit-form__subtitle-error"></span>
-        <button type="submit" class="popup__button popup__button_type_save popup-edit__save">Сохранить</button>
+        <button type="submit" class="popup__button popup__button_type_save popup-edit__save popup__button_type_disabled" disabled>Сохранить</button>
       </form>
   </section>
 
@@ -66,7 +66,7 @@
       <input type="url" class="popup__item popup__item_el_link" id="add-form__link" value="" name="popup_sutitle" placeholder="Ссылка на картинку" required>
       <span class="popup__span-error add-form__link-error"></span>
 
-      <button type="submit" class="popup__button popup__button_type_save popup-add__save ">Сохранить</button>
+      <button type="submit" class="popup__button popup__button_type_save popup-add__save popup__button_type_disabled" disabled>Сохранить</button>
     </form>
   </section>
 
@@ -91,10 +91,8 @@
     </div>
   </template>
 
-  <script src="./scripts/cards.js"></script>
-  <script src="./scripts/script.js"></script>
-  <script src="./scripts/validate.js"></script>
-
+  <script type="module" src="./scripts/constants.js"></script>
+  <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
 
