@@ -2,16 +2,16 @@
 import * as constants from './constants.js';
 
 //импорт и создание экземпляров класса Валидации для каждой формы.
-import FormValidator from './FormValidator.js';
+import FormValidator from './formValidator.js';
 
-let AddFormValidator = new FormValidator (constants.data, constants.addForm);
-AddFormValidator.enableValidation();
+const addFormValidator = new FormValidator (constants.data, constants.addForm);
+addFormValidator.enableValidation();
 
-let EditFormValidator = new FormValidator (constants.data, constants.editForm);
-EditFormValidator.enableValidation();
+const editFormValidator = new FormValidator (constants.data, constants.editForm);
+editFormValidator.enableValidation();
 
 //импорт класса карточки
-import Card from './Card.js'
+import Card from './card.js'
 
 
 //функция закрытия форм по нажатию на esc
@@ -30,7 +30,7 @@ const openPopup = popup => {
 
 //функция заполнения EDIT попапа
 const fillEditPopup = () => {
-  constants.inputTitle.value    = constants.title.textContent;
+  constants.inputTitle.value = constants.title.textContent;
   constants.inputSubtitle.value = constants.subtitle.textContent;
 }
 
@@ -43,7 +43,7 @@ const closePopup = popup => {
 //функция сохранения на форму редактирования профиля
 const handleEditFormSubmit = event => {
   event.preventDefault();
-  constants.title.textContent    = constants.inputTitle.value;
+  constants.title.textContent = constants.inputTitle.value;
   constants.subtitle.textContent =  constants.inputSubtitle.value;
   closePopup(constants.editPopup);
 }
@@ -64,7 +64,7 @@ const handleAddFormSubmit = evt => {
             name: constants.cardName.value,
             link: constants.cardLink.value}
 
-  let newCard = new Card(newCardData, constants.cardTemplate);
+  const newCard = new Card(newCardData, '.card_template');
   constants.places.prepend(newCard.createCard());
 
   closePopup(constants.addPopup);
@@ -89,10 +89,7 @@ constants.addButton.addEventListener('click', () => {
 //функция закрытия попапов (на оверлей или крестик)
 constants.popupOverlays.forEach(item => {
   item.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup_opened')){
-      closePopup(item);
-    }
-    if (evt.target.classList.contains('popup__button_type_exit')) {
+    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button_type_exit')){
       closePopup(item);
     }
   });
@@ -110,7 +107,7 @@ export const openPhotoPopup = (link, name) => {
 
 //создаем карточки по изначальному массиву данных
 constants.initialCards.forEach((item) => {
-  const card = new Card(item, constants.cardTemplate);
+  const card = new Card(item, '.card_template');
   const cardElement = card.createCard();
   constants.places.prepend(cardElement);
 });
