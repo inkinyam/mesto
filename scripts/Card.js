@@ -23,38 +23,28 @@ import {openPhotoPopup} from './script.js';
     cardImage.src = this._link;
     cardImage.alt  = this._name;
     this._cardElement.querySelector('.place__text').textContent = this._name;
-
   }
 
-   //метод, который навешивает слушатель на кнопку-сердечко
-  _setLikeListener () {
+  // метод, который навешивает все слушатели на карточку
+  _setEventListener() {
+    // слушатель на кнопку-сердечко
       this._cardElement.querySelector('.place__button-like').addEventListener('click', (evt) => {
       evt.target.classList.toggle('place__button-like_active');
     });
-   }
 
-   //метод, который навешивает слушатель на кнопку удаления фото
-  _setDeleteListener () {
+    // слушатель на кнопку удаления фото
     this._cardElement.querySelector('.place__button-delete').addEventListener('click', (evt) => {
       evt.target.closest('.place').remove();
     });
-  }
 
-  //метод, который вызывает открытие функции увеличенной фото
-  _setPhotoClickListener () {
+    //слушатель на открытие увеличенной фото
     const cardImage = this._cardElement.querySelector('.place__image');
     cardImage.addEventListener('click', (evt) => {
       const elementLink = this._link;
       const elementName = this._name;
       openPhotoPopup(elementLink, elementName);
-      })
-    }
+    });
 
-  // метод, который навешивает все слушатели на карточку
-  _setEventListener() {
-    this._setLikeListener();
-    this._setDeleteListener();
-    this._setPhotoClickListener();
   }
 
   // публичный метод, который возвращает готовую карточку
