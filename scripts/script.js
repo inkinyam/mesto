@@ -13,38 +13,41 @@ editFormValidator.enableValidation();
 //импорт класса карточки
 import Card from './card.js'
 
+//импорт класс section
+import Section from './section.js';
 
-//функция закрытия форм по нажатию на esc
-const closePopupByEsc = evt => {
-  if (evt.key === "Escape") {
-    const openedPopup = document.querySelector('.popup_opened');
-    closePopup(openedPopup);
-  }
-}
+//импорт класса popup
+import Popup from './popup.js';
 
-//функция открытия попапа
-const openPopup = popup => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupByEsc);
-}
+//импорт класса popupWithImage
+import PopupWithImage from './popupWithImage.js';
+
+//создаем экземпляр section для карточек
+const cardList = new Section ({data: constants.initialCards, renderer: (item) => {
+    const card = new Card ({card: item, handleCardClick: (link, name)=>{
+        const popupPhoto = new PopupWithImage (link, name, '.popup-photo');
+        popupPhoto.open();
+      }}, '.card_template');
+
+    const cardElement = card.createCard();
+    cardList.addItem(cardElement);
+  }}, '.places');
+
+
+
 
 //функция заполнения EDIT попапа
 const fillEditPopup = () => {
-  constants.inputTitle.value = constants.title.textContent;
+  constants.inputTitle.value    = constants.title.textContent;
   constants.inputSubtitle.value = constants.subtitle.textContent;
 }
 
-//функция закрытия попапа
-const closePopup = popup => {
-  document.removeEventListener('keydown', closePopupByEsc);
-  popup.classList.remove('popup_opened');
-}
 
 //функция сохранения на форму редактирования профиля
 const handleEditFormSubmit = event => {
   event.preventDefault();
-  constants.title.textContent = constants.inputTitle.value;
-  constants.subtitle.textContent =  constants.inputSubtitle.value;
+  constants.title.textContent    = constants.inputTitle.value;
+  constants.subtitle.textContent = constants.inputSubtitle.value;
   closePopup(constants.editPopup);
 }
 
@@ -75,42 +78,8 @@ const handleAddFormSubmit = evt => {
 constants.addForm.addEventListener('submit', handleAddFormSubmit);
 
 
-//вызовы функций открытия попапов
-constants.editButton.addEventListener('click', () => {
-  openPopup(constants.editPopup);
-  fillEditPopup();
-});
-
-constants.addButton.addEventListener('click', () => {
-  openPopup(constants.addPopup);
-});
 
 
-//функция закрытия попапов (на оверлей или крестик)
-constants.popupOverlays.forEach(item => {
-  item.addEventListener('mousedown', evt => {
-    if (evt.target.classList.contains('popup_opened') || evt.target.classList.contains('popup__button_type_exit')){
-      closePopup(item);
-    }
-  });
-})
 
-//открытие попапа с увеличенным фото, экспортируем в Card.js, тк там вызывается
-export const openPhotoPopup = (link, name) => {
-  constants.photoPopupImage.src = link;
-  constants.photoPopupImage.alt = name;
-  constants.photoPopupCaption.textContent = name;
-
-  openPopup(constants.photoPopup);
- }
-
-
-//создаем карточки по изначальному массиву данных
-constants.initialCards.forEach((item) => {
-  const card = new Card(item, '.card_template');
-  const cardElement = card.createCard();
-  constants.places.prepend(cardElement);
-});
-
-
+cardList.renderItems();
 

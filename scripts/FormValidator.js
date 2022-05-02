@@ -1,11 +1,11 @@
 export default class FormValidator {
   constructor (data, formElement) {
-    this._formElement = formElement;
-    this._inputList = Array.from(this._formElement.querySelectorAll(data.inputElement));
+    this._formElement          = formElement;
+    this._inputList            = Array.from(this._formElement.querySelectorAll(data.inputElement));
     this._submitButtonSelector = data.submitButtonSelector;
-    this._inactiveButtonClass = data.inactiveButtonClass;
-    this._inputErrorClass = data.inputErrorClass;
-    this._spanErrorClass = data.spanErrorClass;
+    this._inactiveButtonClass  = data.inactiveButtonClass;
+    this._inputErrorClass      = data.inputErrorClass;
+    this._spanErrorClass       = data.spanErrorClass;
   }
 
    //проверяем наличие неверно заполнненых инпутов

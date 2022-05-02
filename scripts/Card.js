@@ -1,11 +1,10 @@
-//импортируем функцию открытия попапа с увеличенной фото из script.js
-import {openPhotoPopup} from './script.js';
 
  //класс карточек
  export default class Card {
-  constructor (card, templateSelector) {
-     this._name = card.name;
-     this._link = card.link;
+  constructor ({card, handleCardClick}, templateSelector) {
+     this._name             = card.name;
+     this._link             = card.link;
+     this._handleCardClick  = handleCardClick;
      this._templateSelector = templateSelector;
   }
 
@@ -20,8 +19,8 @@ import {openPhotoPopup} from './script.js';
     this._getCardElement();
     const cardImage = this._cardElement.querySelector('.place__image');
 
-    cardImage.src = this._link;
-    cardImage.alt  = this._name;
+    cardImage.src   = this._link;
+    cardImage.alt   = this._name;
     this._cardElement.querySelector('.place__text').textContent = this._name;
   }
 
@@ -38,11 +37,8 @@ import {openPhotoPopup} from './script.js';
     });
 
     //слушатель на открытие увеличенной фото
-    const cardImage = this._cardElement.querySelector('.place__image');
-    cardImage.addEventListener('click', (evt) => {
-      const elementLink = this._link;
-      const elementName = this._name;
-      openPhotoPopup(elementLink, elementName);
+    this._cardElement.querySelector('.place__image').addEventListener('click', (evt) => {
+      this._handleCardClick(this._link, this._name);
     });
 
   }

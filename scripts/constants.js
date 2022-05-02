@@ -1,13 +1,12 @@
 export {initialCards,                                       // Начальный массив карточек
-        editPopup, addPopup, photoPopup, editForm, addForm, //Попапы и формы
-        title, subtitle, inputTitle, inputSubtitle,         //Заполнение попапа editPopup
-        editButton, addButton,                              //Кнопки открытия попапов
+        editPopup, addPopup, photoPopup, editForm, addForm, // Попапы и формы
+        title, subtitle, inputTitle, inputSubtitle,         // Заполнение попапа editPopup
+        editButton, addButton,                              // Кнопки открытия попапов
         addCardButton,                                      // Кнопки сохранения попапов
         places,                                             // Контейнер для карточек
         cardName, cardLink,                                 // Переменные для заполнения карточки из попапа
         popupOverlays,                                      // Переменная с массивом попапов
-        photoPopupImage, photoPopupCaption,                 // Переменные для открытия увеличенного фото
-        data                                                 //переменная c селекторами
+        data                                                // Переменная c селекторами
       }
 
 // Начальный массив карточек
@@ -40,21 +39,21 @@ const initialCards = [
 
 
 //Попапы и формы
-const editPopup = document.querySelector('.popup-edit');
-const addPopup = document.querySelector('.popup-add');
+const editPopup  = document.querySelector('.popup-edit');
+const addPopup   = document.querySelector('.popup-add');
 const photoPopup = document.querySelector('.popup-photo')
-const editForm = document.querySelector('.edit-form');
-const addForm  = document.querySelector('.add-form');
+const editForm   = document.querySelector('.edit-form');
+const addForm    = document.querySelector('.add-form');
 
 //Заполнение попапа editPopup
-const title  = document.querySelector('.profile__title');
-const subtitle = document.querySelector('.profile__subtitle');
-const inputTitle = document.querySelector('.popup__item_el_title');
+const title         = document.querySelector('.profile__title');
+const subtitle      = document.querySelector('.profile__subtitle');
+const inputTitle    = document.querySelector('.popup__item_el_title');
 const inputSubtitle = document.querySelector('.popup__item_el_subtitle');
 
 //Кнопки открытия попапов
 const editButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
+const addButton  = document.querySelector('.profile__add-button');
 
 // Кнопки сохранения попапов
 const addCardButton = document.querySelector('.popup-add__save');
@@ -69,9 +68,7 @@ const cardLink = document.querySelector('.popup__item_el_link');
 // Переменная с массивом попапов
 const popupOverlays = Array.from(document.querySelectorAll('.popup'));
 
-// Переменные для открытия увеличенного фото
-const photoPopupImage = document.querySelector('.popup__image');
-const photoPopupCaption = document.querySelector('.popup__caption');
+
 
 //переменная в которой хранятся данные с селекторами для создания экз.класса валидации формы
 const data =  {inputElement: '.popup__item',
