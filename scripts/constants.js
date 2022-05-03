@@ -37,7 +37,6 @@ const initialCards = [
   }
 ];
 
-
 //Попапы и формы
 const editPopup  = document.querySelector('.popup-edit');
 const addPopup   = document.querySelector('.popup-add');

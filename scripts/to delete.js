@@ -49,3 +49,43 @@ constants.popupOverlays.forEach(item => {
     }
   });
 })
+
+
+
+//функция сохранения на форму добавления
+const handleAddFormSubmit = evt => {
+  evt.preventDefault();
+    const newCardData = {
+            name: constants.cardName.value,
+            link: constants.cardLink.value}
+
+  const newCard = new Card(newCardData, '.card_template');
+  constants.places.prepend(newCard.createCard());
+
+  closePopup(constants.addPopup);
+  constants.addForm.reset();
+  disableSubmitter(evt);
+}
+
+constants.addForm.addEventListener('submit', handleAddFormSubmit);
+
+
+
+
+
+//функция заполнения EDIT попапа
+const fillEditPopup = () => {
+  constants.inputTitle.value    = constants.title.textContent;
+  constants.inputSubtitle.value = constants.subtitle.textContent;
+}
+
+
+//функция сохранения на форму редактирования профиля
+const handleEditFormSubmit = event => {
+  event.preventDefault();
+  constants.title.textContent    = constants.inputTitle.value;
+  constants.subtitle.textContent = constants.inputSubtitle.value;
+  closePopup(constants.editPopup);
+}
+
+constants.editForm.addEventListener('submit', handleEditFormSubmit);

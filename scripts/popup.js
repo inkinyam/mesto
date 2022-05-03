@@ -1,35 +1,32 @@
 export default class Popup {
   constructor(popupSelector) {
-    this._selecor = popupSelector;
+    this._selector = popupSelector;
   }
 
-  //метод описывающий открытие попапа
+//метод описывающий открытие попапа
   open () {
-    this.setEventListeners();
-    document.querySelector(this._selecor).classList.add('popup_opened');
+    document.querySelector(this._selector).classList.add('popup_opened');
   }
 
-  //метод описывающий закрытие попапа
+//метод описывающий закрытие попапа
   close () {
-    document.querySelector(this._selecor).classList.remove('popup_opened');
+    document.querySelector(this._selector).classList.remove('popup_opened');
   }
 
-  //метод навешивающий слушатели
+//метод навешивающий слушатели
   setEventListeners () {
+    // закрытие по esc
     document.addEventListener('keydown', evt => {
       if (evt.key === "Escape") {
             this.close();
       }
     });
 
-    document.querySelector(this._selecor).addEventListener('mousedown', evt => {
+   // закрытие по клику мышки на темную область или крестик
+    document.querySelector(this._selector).addEventListener('mousedown', evt => {
      if (evt.target.classList.contains('popup_opened') ||evt.target.classList.contains('popup__button_type_exit')) {
             this.close();
       }
     });
-
-
   }
-
-
 }
