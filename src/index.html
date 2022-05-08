@@ -5,13 +5,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MESTO</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
   <!-- блок HEADER -->
   <header class="header">
-    <img class="header__logo" src="./images/logo.svg" alt="логотип">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="логотип">
   </header>
 
 <!-- блок MAIN -->
@@ -19,7 +18,7 @@
 
 <!-- блок PROFILE -->
     <section class="profile">
-      <img class="profile__avatar" src="./images/avatar.jpg" alt="аватар">
+      <img class="profile__avatar" src="<%=require('./images/avatar.jpg')%>" alt="аватар">
       <div class="profile__name">
         <h1 class="profile__title"></h1>
         <button type="button" class="profile__edit-button"></button>
@@ -90,8 +89,6 @@
       </div>
     </div>
   </template>
-
-  <script type="module" src="./scripts/script.js"></script>
 </body>
 </html>
 

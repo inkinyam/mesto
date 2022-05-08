@@ -1,11 +1,14 @@
+// импорт основного css файла
+import './index.css';
+
 //импорты классов
-import * as constants from './constants.js';
-import FormValidator from './formValidator.js';
-import Card from './card.js'
-import Section from './section.js';
-import PopupWithImage from './popupWithImage.js';
-import PopupWithForm from './popupWithForm.js';
-import UserInfo from './usersInfo.js';
+import * as constants from '../utils/constants.js';
+import FormValidator from '../components/formValidator.js';
+import Card from '../components/card.js'
+import Section from '../components/section.js';
+import PopupWithImage from '../components/popupWithImage.js';
+import PopupWithForm from '../components/popupWithForm.js';
+import UserInfo from '../components/usersInfo.js';
 
 //создание экземпляров валидаторов для каждой формы
 const addFormValidator = new FormValidator (constants.data, constants.addForm);
@@ -19,6 +22,7 @@ editFormValidator.enableValidation();
 const cardList = new Section ({data: constants.initialCards, renderer: (item) => {
     const card = new Card ({card: item, handleCardClick: (link, name)=>{
         const popupPhoto = new PopupWithImage (link, name, '.popup-photo');
+        popupPhoto.setEventListeners();
         popupPhoto.open();
       }}, '.card_template');
 
