@@ -1,9 +1,9 @@
 import Popup from "./popup.js";
 
 export default class PopupWithForm extends Popup {
-  constructor (submitForm, selector) {
+  constructor (handleSubmitForm, selector) {
     super (selector);
-    this._submitForm = submitForm;
+    this._handleSubmitForm = handleSubmitForm;
   }
 
 //метод получающий значения инпутов
@@ -38,7 +38,7 @@ export default class PopupWithForm extends Popup {
 
   // навешивает обработчик сабмита
     document.querySelector(this._selector).addEventListener('submit', evt => {
-      this._submitForm(evt);
+      this._handleSubmitForm(evt);
       this.close();
     })
   }

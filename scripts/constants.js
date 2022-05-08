@@ -1,6 +1,6 @@
 export {initialCards,                                       // Начальный массив карточек
         editPopup, addPopup, photoPopup, editForm, addForm, // Попапы и формы
-        title, subtitle, inputTitle, inputSubtitle,         // Заполнение попапа editPopup
+        inputTitle, inputSubtitle,                          // Заполнение попапа editPopup
         editButton, addButton,                              // Кнопки открытия попапов
         addCardButton,                                      // Кнопки сохранения попапов
         places,                                             // Контейнер для карточек
@@ -45,8 +45,6 @@ const editForm   = document.querySelector('.edit-form');
 const addForm    = document.querySelector('.add-form');
 
 //Заполнение попапа editPopup
-const title         = document.querySelector('.profile__title');
-const subtitle      = document.querySelector('.profile__subtitle');
 const inputTitle    = document.querySelector('.popup__item_el_title');
 const inputSubtitle = document.querySelector('.popup__item_el_subtitle');
 
@@ -66,7 +64,6 @@ const cardLink = document.querySelector('.popup__item_el_link');
 
 // Переменная с массивом попапов
 const popupOverlays = Array.from(document.querySelectorAll('.popup'));
-
 
 
 //переменная в которой хранятся данные с селекторами для создания экз.класса валидации формы
