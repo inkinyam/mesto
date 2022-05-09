@@ -1,19 +1,19 @@
 import Popup from "./popup.js";
 
 export default class PopupWithImage extends Popup {
-  constructor (link, name, selector) {
+  constructor (selector) {
     super (selector);
-    this._link = link;
-    this._name = name;
+    this._imageLink   = this._popup.querySelector('.popup__image');
+    this._altText = this._popup.querySelector('.popup__image');
+    this._caprion = this._popup.querySelector('.popup__caption');
   }
 
   // метод, который переопределяет родительский, в нем заполняем данные "темплейта" попапа
-  open() {
-    const photoPopup = document.querySelector(this._selector);
-    photoPopup.classList.add('popup_opened');
-    photoPopup.querySelector('.popup__image').src = this._link;
-    photoPopup.querySelector('.popup__image').alt = this._name;
-    photoPopup.querySelector('.popup__caption').textContent = this._name;
+  open(link, name) {
+    super.open();
+    this._imageLink.src = link;
+    this._altText.alt = name;
+    this._caprion.textContent = name;
   }
 
 }
