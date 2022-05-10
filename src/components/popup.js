@@ -5,22 +5,23 @@ export default class Popup {
     this._handleEscListener = function (evt) {
       if (evt.key === "Escape") {
         this.close();
-        document.removeEventListener('keydown', this.escHandler);
       }
     }
-    this._escHandler = this._handleEscListener.bind(this);
+    this._handleEscListener = this._handleEscListener.bind(this);
   }
 
 //метод описывающий открытие попапа
   open () {
     this._popup.classList.add('popup_opened');
    // навешиваем слушатель на закрытие по esc
-    document.addEventListener('keydown', this._escHandler);
+    document.addEventListener('keydown',this._handleEscListener);
   }
 
 //метод описывающий закрытие попапа
   close () {
     this._popup.classList.remove('popup_opened');
+    // убираем слушатель на закрытие по esc
+    document.removeEventListener('keydown', this._handleEscListener);
   }
 
 //метод навешивающий слушатели

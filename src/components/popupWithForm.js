@@ -4,18 +4,19 @@ export default class PopupWithForm extends Popup {
   constructor (handleSubmitForm, selector) {
     super (selector);
     this._handleSubmitForm = handleSubmitForm;
+    this._inputs = Array.from(this._popup.querySelectorAll('.popup__item'));
+    this._form = this._popup.querySelector('.popup__wrapper'); // т.к. форма внутри обертки popup, ищем внутри именно форму для ресета.
   }
 
 //метод получающий значения инпутов
   getInputValues () {
-    const inputs = Array.from(this._popup.querySelectorAll('.popup__item'));
-    this._inputsValues = inputs.map(item => item.value);
+    this._inputsValues = this._inputs.map(item => item.value);
   }
 
 //метод закрытия, в котором формы сбрасывают значения инпутов
   close() {
     super.close();
-    this._popup.querySelector('.popup__wrapper').reset(); // т.к. форма внутри обертки this._selector, ищем внутри именно форму для ресета.
+    this._form.reset();
   }
 
 //метод, переписывающий родительский метод
