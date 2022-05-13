@@ -18,6 +18,7 @@
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
 
 /*блок PLACES*/
 @import url(../blocks/places/places.css);
