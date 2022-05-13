@@ -62,7 +62,6 @@ constants.editButton.addEventListener('click', () => {
   const {name, about} = user.getUserInfo();
   constants.inputTitle.value = name;
   constants.inputSubtitle.value = about;
-
   popupEditForm.open();
 })
 

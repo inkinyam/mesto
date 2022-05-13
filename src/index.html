@@ -69,6 +69,15 @@
     </form>
   </section>
 
+    <!-- блок SUBMIT -->
+    <section class="popup popup-submit">
+      <form class="popup__wrapper submit-form" name="submitForm">
+        <button class="popup__button popup__button_type_exit popup-add__exit" type="button"></button>
+        <h2 class="popup__title">Вы уверены?</h2>
+                <button type="submit" class="popup__button popup__button_type_save popup-submit__save " >Да</button>
+      </form>
+    </section>
+
  <!-- блок PHOTO-POPUP-->
   <section class="popup popup-photo">
     <div class="popup__figure">
@@ -85,7 +94,11 @@
       <img class="place__image" src="#" alt="">
       <div class="place__description">
         <p class="place__text"> </p>
-        <button class="place__button-like" type="button"></button>
+        <div class="place__like-container">
+          <button class="place__button-like" type="button"></button>
+          <p class="place__like-counter"></p>
+        </div>
+
       </div>
     </div>
   </template>

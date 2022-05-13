@@ -8,7 +8,8 @@ module.exports = {
   entry:  { main: './src/pages/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
+    filename: 'main.[hash].js',
+    clean: true,
         publicPath: ''
   },
 
@@ -20,6 +21,7 @@ module.exports = {
     port: 8080,
     open: true
   },
+  devtool: 'inline-source-map',
 
   module: {
     rules: [
