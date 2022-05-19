@@ -28,6 +28,6 @@
 }
   
 @keyframes move {
-  from {transform: translateX(0px)}
-  to {transform: translateX(5px)}
+  from {transform: translateX(0px);}
+  to {transform: translateX(5px);}
 }
