@@ -15,8 +15,8 @@
 
  // метод, который создает карточку
   _getCardElement () {
-    const cardElement =  document.querySelector(this._templateSelector).content.querySelector('.place').cloneNode(true);
-    this._cardElement = cardElement;
+    this._cardElement =  document.querySelector(this._templateSelector).content.querySelector('.place').cloneNode(true);
+    this._buttonLike = this._cardElement.querySelector('.place__button-like');
   }
 
    //метод, который заполняет карточку
@@ -36,7 +36,7 @@
   // метод, который навешивает все слушатели на карточку
   _setEventListener() {
     // слушатель на кнопку-сердечко
-    this._cardElement.querySelector('.place__button-like').addEventListener('click', (evt) => {
+    this._buttonLike.addEventListener('click', (evt) => {
         this._handleLikeClick(evt);
     });
 
@@ -53,12 +53,12 @@
 
   // метод, закрашивающий сердечко
   setLike () {
-    this._cardElement.querySelector('.place__button-like').classList.add('place__button-like_active');
+    this._buttonLike.classList.add('place__button-like_active');
   }
 
   //метод, убирающий закрашенное сердечко
   removeLike () {
-    this._cardElement.querySelector('.place__button-like').classList.remove('place__button-like_active');
+    this._buttonLike.classList.remove('place__button-like_active');
   }
 
   // метод, который проверяет, лайкнута ли карточка
@@ -75,7 +75,7 @@
   // метод, который обновляет количество лайков
   renewLikeCounter (counter) {
     this._likes = counter;
-    this._likeCounter.textContent =counter.length;
+    this._likeCounter.textContent = counter.length;
   }
 
   //метод, который удаляет карточку из верстки
