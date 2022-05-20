@@ -9,8 +9,12 @@ export default class PopupWithForm extends Popup {
   }
 
 //метод получающий значения инпутов
-  getInputValues () {
-    this._inputsValues = this._inputs.map(item => item.value);
+  _getInputValues () {
+    this._formValues = {};
+    this._inputs.forEach(input => {
+      this._formValues[input.name] = input.value;
+    });
+    return this._formValues; 
   }
 
 //метод закрытия, в котором формы сбрасывают значения инпутов
@@ -24,8 +28,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
     // навешивает обработчик сабмита
     this._popup.addEventListener('submit', evt => {
-      this._handleSubmitForm(evt);
-      this.close();
+      this._handleSubmitForm(evt, this._getInputValues());
     })
   }
 

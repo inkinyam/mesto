@@ -12,6 +12,7 @@
 @import url(../blocks/content/_visible/content_visible.css);
 
 @import url(../blocks/content-loader/content-loader.css);
+@import url(../blocks/content-loader/_visible/content-loader_visible.css);
 
 
 /*блок PROFILE*/
@@ -23,7 +24,7 @@
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__edit-avatar/profile__edit-avatar.css);
-@import url(../blocks/profile/__loader/profile__loader.css);
+
 
 /*блок PLACES*/
 @import url(../blocks/places/places.css);
@@ -62,11 +63,4 @@
 
 @import url(../blocks/popup/__span-error/popup__span-error.css);
 @import url(../blocks/popup/__span-error/_active/popup__span-error_active.css);
-
-/*блок LOADER*/
-@import url(../blocks/loader/loader.css);
-@import url(../blocks/loader/_visible/loader_visible.css);
-@import url(../blocks/loader/__circle/loader__circle.css);
-
-
 

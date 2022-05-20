@@ -24,14 +24,25 @@ const api = new Api ('https://mesto.nomoreparties.co/v1/cohort-41', {
 const user = new UserInfo ('.profile__title', '.profile__subtitle', '.profile__avatar');
 
 
+//функция, которая меняет текст кнопки, когда происходит загрузка
+function renderLoadProgress (buttonSelector, isLoading) {
+  const button = document.querySelector(buttonSelector);
+  if (isLoading) {
+    button.textContent = `Сохранение...`;
+  }
+  else {
+    button.textContent = `Сохранить`;
+  }
+}
+
 // функция, которая показывае или прячет элемент загрузки
 function renderSpinner(spinnerSelector, isLoading) {
   const spinner = document.querySelector(spinnerSelector);
   if (isLoading) {
-    spinner.classList.add('loader_visible');
+    spinner.classList.add('content-loader_visible');
   }
   else {
-    spinner.classList.remove('loader_visible');
+    spinner.classList.remove('content-loader_visible');
   }
 }
 
@@ -46,15 +57,11 @@ function renderContent (contentSelector, isLoading) {
   }
 }
 
-//отрисовываем все карточки
-function renderSection (initialCardArr) {
-  const cardList = new Section ({data: initialCardArr, renderer: (item) => {
-    const cardElement = createCard(item);
-    cardList.addItem(cardElement);
-  }}, '.places');
- return cardList.renderItems();
-}
-
+// cозжаем экземпляр класса Section
+const cardList = new Section ((item) => {
+  const cardElement = createCard(item);
+  cardList.addItem(cardElement);
+}, '.places');
 
 //получаем данные карточек и пользователя и все отрисовываем
 renderSpinner('.content-loader', true);
@@ -63,7 +70,7 @@ Promise.all([api.getUserData(), api.getCards()])
   .then(([userData, cardData])=>{
     user.setUserInfo({name: userData.name, about: userData.about, id: userData._id});
     user.setUserAvatar(userData.avatar);
-    renderSection (cardData);
+    cardList.renderItems(cardData);
   })
   .catch((err)=>{console.log(`Что-то не так. ${err}`)})
   .finally(()=>{
@@ -77,13 +84,17 @@ const confirmPopup = new PopupWithConfirm (handleSubmitConfirmPopup, '.popup-con
 confirmPopup.setEventListeners();
 
 // обработчик нажатия кнопки "ДА" на форме подтверждения
-function handleSubmitConfirmPopup (evt, cardId, target) {
+function handleSubmitConfirmPopup (evt, cardId) {
   evt.preventDefault();
-  renderSpinner('.popup-confirm__loader', true);
+  renderLoadProgress('.popup-confirm__save', true);
+
   api.deleteCard(cardId)
-    .then(() => {target.closest('.place').remove()})
+    .then(() => {
+      confirmPopup.currentCard.deleteCard();
+      confirmPopup.close()}) 
     .catch ((err) =>{console.log(`Что-то не так. ${err}`)})
-    .finally(()=>{renderSpinner('.popup-confirm__loader', false)})}
+    .finally(()=>{renderLoadProgress('.popup-confirm__save', false)})
+  }
 
 //функция создания карточки
 function createCard (item) {
@@ -94,49 +105,50 @@ function createCard (item) {
       popupPhoto.open(link, name);
     },
     //обработчик клика на лайк
-    handleLikeClick: (evt) => {
-      const buttonLike = evt.target;
+    handleLikeClick: () => {
       if (!card.isLiked(user.id)) {
         
         api.putLike(card.id)
           .then(res => {
-            buttonLike.classList.add('place__button-like_active');
+            card.setLike();
             card.renewLikeCounter(res.likes);
           })
           .catch((err) => console.log(`Что-то не так. ${err}`));
       } else {
         api.deleteLike(card.id)
           .then(res => {
-            buttonLike.classList.remove('place__button-like_active');
+            card.removeLike();
             card.renewLikeCounter(res.likes);
           })
           .catch((err) => console.log(`Что-то не так. ${err}`));
       }
     },
     //обработчик клика на кнопку удаления
-    handleDeleteClick: (target) => {
-      confirmPopup.setId(card.id, target);
+    handleDeleteClick: () => {
+      confirmPopup.setId(card);
       confirmPopup.open();
     }
   }, '.card_template');
 
-  const cardElement = card.createCard(user.id);
-  return cardElement;
+  return card.createCard(user.id);
+
 }
 
 
 //создание экземпляра попапа для формы редактирования профиля
-const popupEditForm = new PopupWithForm ((evt)=> {
+const popupEditForm = new PopupWithForm ((evt, data)=> {
   evt.preventDefault();
-  renderSpinner('.popup-edit__loader', true);
-  popupEditForm.getInputValues();
+  renderLoadProgress('.popup-edit__save', true);
   const newUserInfo = {
-  name: popupEditForm._inputsValues[0],
-  about: popupEditForm._inputsValues[1]}
+    name: data.popup_title,
+    about: data.popup_sutitle}
   api.postUserData(newUserInfo.name, newUserInfo.about)
-    .then(() => {user.setUserInfo(newUserInfo)})
+    .then(() => {
+      user.setUserInfo(newUserInfo)
+      popupEditForm.close();
+    })
     .catch((err) => console.log(`Что-то не так. ${err}`))
-    .finally(()=>{renderSpinner('.popup-edit__loader', false)});
+    .finally(()=>{renderSpinner('.popup-edit__save', false)});
 }, '.popup-edit');
 popupEditForm.setEventListeners();
 
@@ -146,18 +158,19 @@ constants.editButton.addEventListener('click', () => {
   const {name, about} = user.getUserInfo();
   constants.inputTitle.value = name;
   constants.inputSubtitle.value = about;
+  renderLoadProgress('.popup-edit__save', false);
   popupEditForm.open();
 })
 
 
 //создание экземпляра попапа для формы добавления фото
-const popupAddForm = new PopupWithForm ((evt) => {
+const popupAddForm = new PopupWithForm ((evt, data) => {
   evt.preventDefault();
-  renderSpinner('.popup-add__loader', true)
-  popupAddForm.getInputValues();
+  renderLoadProgress('.popup-add__save', true)
+  
   const newCardData = {
-    name: popupAddForm._inputsValues[0],
-    link: popupAddForm._inputsValues[1],
+    name: data.popup_title,
+    link: data.popup_sutitle,
     likes: [],
     owner: {_id: user.id},
     id: ''
@@ -165,10 +178,11 @@ const popupAddForm = new PopupWithForm ((evt) => {
   api.postCard(newCardData.name, newCardData.link)
   .then((res)=> {
     const newCard = createCard(res);
-    constants.places.prepend(newCard);
+    cardList.renderNewElement(newCard);
+    popupAddForm.close();
     })
   .catch((err) => console.log(`Что-то не так. ${err}`))
-  .finally(()=>{renderSpinner('.popup-add__loader', false)});  
+  .finally(()=>{ renderLoadProgress('.popup-add__save', false) });  
 }, '.popup-add');
 
 popupAddForm.setEventListeners();
@@ -181,19 +195,19 @@ constants.addButton.addEventListener('click', () => {
 });
 
 //создание экземпляра попапа формы для редактирования аватара профиля
-const editAvatarPopup = new PopupWithForm ((evt)=>{
+const editAvatarPopup = new PopupWithForm ((evt, data)=>{
   evt.preventDefault();
-  renderSpinner('.loader-profile', true)
-  editAvatarPopup.getInputValues();
-  const newAvatar = editAvatarPopup._inputsValues[0];
+  renderLoadProgress('.update-avatar-form__save', true)
+  const newAvatar = data.inputAvatarLink;
 
   api.postUserPhoto(newAvatar)
     .then(()=>{
       const avatarPhoto = document.querySelector('.profile__avatar');
       avatarPhoto.src = newAvatar;
+      editAvatarPopup.close();
       })
     .catch((err) => console.log(`Что-то не так. ${err}`))
-    .finally(()=>{renderSpinner('.loader-profile', false)});    
+    .finally(()=>{ renderLoadProgress('.update-avatar-form__save', false) });    
   }, '.popup-update-avatar');
 
   editAvatarPopup.setEventListeners();

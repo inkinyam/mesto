@@ -23,15 +23,6 @@
 
 <!-- блок PROFILE -->
     <section class="profile">
-      <div class="profile__loader">
-        <div class="loader loader-profile">
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-        </div>
-      </div>
-
       <img class="profile__avatar" src="#" alt="аватар">
       <button type="button" class="profile__edit-avatar"></button>
       <div class="profile__name">
@@ -65,15 +56,7 @@
 
         <input type="text" class="popup__item popup__item_el_subtitle" id="edit-form__subtitle" value="" name="popup_sutitle" placeholder="Введите должность" minlength="2" maxlength="200" required>
         <span class="popup__span-error edit-form__subtitle-error"></span>
-        <button type="submit" class="popup__button popup__button_type_save popup-edit__save popup__button_type_disabled" disabled>
-          Сохранить
-          <div class="loader  popup-edit__loader">
-            <span class="loader__circle"></span>
-            <span class="loader__circle"></span>
-            <span class="loader__circle"></span>
-            <span class="loader__circle"></span>
-          </div>
-        </button>
+        <button type="submit" class="popup__button popup__button_type_save popup-edit__save popup__button_type_disabled" disabled>Сохранить</button>
       </form>
   </section>
 
@@ -88,15 +71,7 @@
       <input type="url" class="popup__item popup__item_el_link" id="add-form__link" value="" name="popup_sutitle" placeholder="Ссылка на картинку" required>
       <span class="popup__span-error add-form__link-error"></span>
 
-      <button type="submit" class="popup__button popup__button_type_save popup-add__save popup__button_type_disabled" disabled>
-        Сохранить
-        <div class="loader  popup-add__loader">
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-        </div>
-      </button>
+      <button type="submit" class="popup__button popup__button_type_save popup-add__save popup__button_type_disabled" disabled> Сохранить</button>
     </form>
   </section>
 
@@ -105,15 +80,7 @@
     <form class="popup__wrapper confirm-form" name="confirmForm">
       <button class="popup__button popup__button_type_exit popup-confirm__exit" type="button"></button>
       <h2 class="popup__title">Вы уверены?</h2>
-      <button type="submit" class="popup__button popup__button_type_save popup-confirm__save " >
-        Да
-        <div class="loader  popup-confirm__loader">
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-          <span class="loader__circle"></span>
-        </div>
-      </button>
+      <button type="submit" class="popup__button popup__button_type_save popup-confirm__save"> Да </button>
     </form>
   </section>
 
@@ -123,10 +90,10 @@
       <button class="popup__button popup__button_type_exit popup-update-avatar__exit" type="button"></button>
       <h2 class="popup__title">Обновить аватар</h2>
 
-      <input type="url" class="popup__item popup__item_el_avatar" id="update-avatar-form__avatar" value="" name="popup_avatar-link" placeholder="Ссылка на новую картинку" required>
+      <input type="url" class="popup__item popup__item_el_avatar" id="update-avatar-form__avatar" value="" name="inputAvatarLink" placeholder="Ссылка на новую картинку" required>
       <span class="popup__span-error update-avatar-form__avatar-error"></span>
 
-      <button type="submit" class="popup__button popup__button_type_save update-avatar-form__save " >Сохранить</button>
+      <button type="submit" class="popup__button popup__button_type_save update-avatar-form__save">Сохранить</button>
     </form>
   </section>
 

@@ -4,17 +4,20 @@ export default class Api {
     this.headers = headers;
   }
 
+//метод, проверяющий какой результат пришел, возвращает объект если ок, и ошибку, если нет
+  _checkRes(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
 //метод, который реализует получение карточки с сервера
   getCards () {
     return fetch (`${this.baseUrl}/cards`, {
       headers: this.headers
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
  // метод, который реализует получение данные пользователя с сервера
@@ -22,12 +25,7 @@ export default class Api {
     return fetch (`${this.baseUrl}/users/me`, {
       headers: this.headers
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
  // метод, который реализует редактирование данных пользователя на сервере
@@ -37,12 +35,7 @@ export default class Api {
       method: 'PATCH',
       body: JSON.stringify({name: userName, about: about}),
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
   //  метод, который реализует редактирование автара пользователя на сервере
@@ -52,12 +45,7 @@ export default class Api {
       method: 'PATCH',
       body: JSON.stringify({avatar: link}),
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
 // метод, который реализует отправление карточки на сервер
@@ -67,12 +55,7 @@ export default class Api {
       method: 'POST',
       body: JSON.stringify({name: cardName, link: link}),
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
 // метод, который реализует установку лайка на карточку
@@ -81,12 +64,7 @@ export default class Api {
       headers: this.headers,
       method: 'PUT',
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
 // метод, который реализует удаление лайка с карточки
@@ -95,12 +73,7 @@ export default class Api {
       headers: this.headers,
       method: 'DELETE',
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
-    })
+    .then (res => {return this._checkRes(res)})
   }
 
 // метод, который реализует удаление карточки с сервера  
@@ -109,11 +82,6 @@ export default class Api {
       method: 'DELETE',
       headers: this.headers
     })
-    .then (res => {
-      if (res.ok) {
-        return res.json();
-      }
-        return Promise.reject(`Ошибка: ${res.status}`)
-    })
+    .then (res => {return this._checkRes(res)})
   }
 }
